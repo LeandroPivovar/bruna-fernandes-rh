@@ -1,16 +1,21 @@
-# Bruna Fernandes — Suporte Administrativo & Recrutamento
+# Bruna Fernandes | Suporte Empresarial
 
-Landing page de vendas, estática (HTML + CSS + JS puro, sem build).
+Landing page estática (HTML + CSS + JS puro, sem build) para os serviços de Suporte Administrativo,
+Recrutamento e Seleção, Tráfego Pago e Criação de Artes/Criativos. Preparada para receber campanhas de Google Ads.
 
 ## Arquivos
 
 | Arquivo | Função |
 | --- | --- |
-| `index.html` | Conteúdo e estrutura |
-| `styles.css` | Design system (paleta, tipografia, seções, responsivo) |
-| `script.js` | Menu mobile, reveal no scroll, acordeão do FAQ |
+| `index.html` | Conteúdo, SEO (meta tags + schema.org) e estrutura |
+| `styles.css` | Design system (paleta do logo, tipografia, seções, responsivo) |
+| `script.js` | WhatsApp por serviço, formulário de orçamento, menu mobile, reveal, FAQ |
+| `assets/` | Fotos otimizadas, logo (og:image) e favicon |
+| `robots.txt` | Liberação para indexação |
 
 ## Rodar localmente
+
+Qualquer servidor estático na pasta, por exemplo:
 
 ```bash
 python -m http.server 4173
@@ -18,33 +23,46 @@ python -m http.server 4173
 
 Abrir http://localhost:4173
 
-## Trocar as fotos
+## Seções
 
-Hoje o site não usa imagens — o hero é um gradiente com textura e o retrato é um bloco CSS. Para usar fotos reais:
+Hero · Propósito · Sobre mim (formação e experiência) · Serviços (4) · "Você não precisa dar conta de tudo sozinho" ·
+Para quem · Diferenciais · Como funciona · Modelo de contratação + disponibilidade · Dúvidas · Orçamento/Contato.
 
-1. Criar `assets/` e colocar `hero.jpg` (paisagem, 2400px de largura) e `bruna.jpg` (retrato vertical).
-2. Em `styles.css`, no bloco `.hero__media::before`, adicionar a imagem antes dos gradientes:
+Portfólio ainda **não** foi incluído.
 
-```css
-background:
-  linear-gradient(160deg, rgba(58,37,49,.82), rgba(26,16,22,.92)),
-  url("assets/hero.jpg") center/cover no-repeat;
-```
+## WhatsApp e formulário
 
-3. Em `.portrait`, substituir o gradiente por `url("assets/bruna.jpg") center/cover no-repeat` e remover o `<span class="portrait__label">` do HTML.
+- O número fica em uma constante no topo do `script.js` (`WHATSAPP`) e também como fallback nos `href="https://wa.me/554899088463"` do `index.html`. Para trocar, buscar e substituir `554899088463` nos dois arquivos.
+- Qualquer link com `data-wa="Nome do Serviço"` recebe automaticamente a mensagem
+  "Olá, Bruna! Encontrei seu site e gostaria de saber mais sobre o serviço de …". `data-wa=""` usa uma mensagem genérica.
+- O botão flutuante abre um painel para o visitante escolher o serviço.
+- O formulário de orçamento valida os campos e abre o WhatsApp com todas as respostas preenchidas (não precisa de backend).
+  Para enviar também por e-mail, integrar com Formspree/EmailJS no `submit` do `script.js`.
 
-## Onde editar os dados de contato
+## Google Tag Manager / Google Ads
 
-WhatsApp e telefone aparecem em 4 lugares no `index.html` (`wa.me/554899088463` e `tel:+554899088463`). Buscar e substituir.
+- Colar os snippets do GTM nos dois comentários marcados no `index.html` (`<head>` e início do `<body>`).
+- O site já envia eventos para o `dataLayer`:
+  - `whatsapp_click` (parâmetro `service`)
+  - `generate_lead` (parâmetros `form`, `services`) no envio do formulário
+- Usar esses eventos como conversões no Google Ads.
+
+## Pendências
+
+- E-mail de contato (ainda não exibido no site).
+- Domínio: quando definido, preencher o `<link rel="canonical">` (comentado no `<head>`), tornar absoluta a URL do `og:image`
+  e adicionar `sitemap.xml` + linha `Sitemap:` no `robots.txt`.
+- Portfólio.
 
 ## Paleta
 
 | Token | Cor | Uso |
 | --- | --- | --- |
-| `--plum-deep` | `#1E1219` | Fundo do hero |
-| `--plum` | `#2B1B24` | Seções escuras, card destaque |
-| `--rose-deep` | `#C1707F` | Acentos, links, itálicos |
-| `--rose` | `#D99AA8` | Acentos em fundo escuro |
-| `--rose-pale` | `#F6E6E8` | Fundo das seções Sobre e FAQ |
-| `--nude` | `#EFE3DC` | Faixa, Processo, rodapé |
+| `--plum-deep` | `#1B1119` | Fundo do hero, rodapé |
+| `--plum` | `#2A1A26` | Seções escuras, card destaque |
+| `--rose-deep` | `#B8506F` | Acentos, links, itálicos |
+| `--rose` | `#E29AAE` | Acentos em fundo escuro |
+| `--gold` | `#C9A45C` | Monograma BF, botões, ícones |
+| `--rose-pale` | `#F7E8EC` | Fundo de Sobre e Como funciona |
+| `--nude` | `#F0E5E0` | Faixa, Para quem, Dúvidas |
 | `--cream` | `#FBF7F5` | Fundo padrão |
