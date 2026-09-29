@@ -1,7 +1,7 @@
 # Bruna Fernandes | Suporte Empresarial
 
 Landing page estática (HTML + CSS + JS puro, sem build) para os serviços de Suporte Administrativo,
-Recrutamento e Seleção, Tráfego Pago e Criação de Artes/Criativos. Preparada para receber campanhas de Google Ads.
+Recrutamento e Seleção, Tráfego Pago, Criação de Artes/Criativos e SDR (pré-vendas). Preparada para receber campanhas de Google Ads.
 
 ## Arquivos
 
@@ -25,7 +25,7 @@ Abrir http://localhost:4173
 
 ## Seções
 
-Hero · Propósito · Sobre mim (formação e experiência) · Serviços (4) · "Você não precisa dar conta de tudo sozinho" ·
+Hero · Propósito · Sobre mim (formação e experiência) · Serviços (5) · "Você não precisa dar conta de tudo sozinho" ·
 Para quem · Diferenciais · Como funciona · Modelo de contratação + disponibilidade · Dúvidas · Orçamento/Contato.
 
 Portfólio ainda **não** foi incluído.
